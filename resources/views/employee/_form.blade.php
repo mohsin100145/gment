@@ -6,7 +6,7 @@
 <div class="required form-group {{ $errors->has('name') ? 'has-error' : ''}}">
     {!! Form::label('name', 'Name', ['class' => 'col-sm-3 control-label']) !!}
     <div class="col-sm-9">
-        {!! Form::text('name', null, ['class' => 'form-control', 'placeholder' => 'Enter Name', 'autocomplete' => 'off', 'required']) !!}
+        {!! Form::text('name', null, ['class' => 'form-control', 'placeholder' => 'Enter Name', 'autocomplete' => 'off', 'required', 'autofocus']) !!}
         <span class="text-danger">
             {{ $errors->first('name') }}
         </span>
@@ -24,7 +24,7 @@
 <div class="required form-group {{ $errors->has('salary') ? 'has-error' : ''}}">
     {!! Form::label('salary', 'Salary', ['class' => 'col-sm-3 control-label']) !!}
     <div class="col-sm-9">
-        {!! Form::text('salary', null, ['class' => 'form-control', 'placeholder' => 'Enter Salary', 'autocomplete' => 'off', 'required']) !!}
+        {!! Form::text('salary', null, ['onkeypress' => 'validate(event)', 'salary', 'class' => 'form-control', 'placeholder' => 'Enter Salary', 'autocomplete' => 'off', 'required']) !!}
         <span class="text-danger">
             {{ $errors->first('salary') }}
         </span>
@@ -33,25 +33,16 @@
 <div class="required form-group {{ $errors->has('basic_salary') ? 'has-error' : ''}}">
     {!! Form::label('basic_salary', 'Basic Salary', ['class' => 'col-sm-3 control-label']) !!}
     <div class="col-sm-9">
-        {!! Form::text('basic_salary', null, ['class' => 'form-control', 'placeholder' => 'Enter Basic Salary', 'autocomplete' => 'off', 'required']) !!}
+        {!! Form::text('basic_salary', null, ['onkeypress' => 'validate(event)', 'basic_salary', 'class' => 'form-control', 'placeholder' => 'Enter Basic Salary', 'autocomplete' => 'off', 'required', 'readOnly', 'tabindex' => '-1']) !!}
         <span class="text-danger">
             {{ $errors->first('basic_salary') }}
-        </span>
-    </div>
-</div>
-<div class="required form-group {{ $errors->has('home_allowance') ? 'has-error' : ''}}">
-    {!! Form::label('home_allowance', 'Home Allowance', ['class' => 'col-sm-3 control-label']) !!}
-    <div class="col-sm-9">
-        {!! Form::text('home_allowance', null, ['class' => 'form-control', 'placeholder' => 'Enter Home Allowance', 'autocomplete' => 'off', 'required']) !!}
-        <span class="text-danger">
-            {{ $errors->first('home_allowance') }}
         </span>
     </div>
 </div>
 <div class="required form-group {{ $errors->has('food_allowance') ? 'has-error' : ''}}">
     {!! Form::label('food_allowance', 'Food Allowance', ['class' => 'col-sm-3 control-label']) !!}
     <div class="col-sm-9">
-        {!! Form::text('food_allowance', null, ['class' => 'form-control', 'placeholder' => 'Enter Food Allowance', 'autocomplete' => 'off', 'required']) !!}
+        {!! Form::text('food_allowance', null, ['onkeypress' => 'validate(event)', 'food_allowance', 'class' => 'form-control', 'placeholder' => 'Enter Food Allowance', 'autocomplete' => 'off', 'required']) !!}
         <span class="text-danger">
             {{ $errors->first('food_allowance') }}
         </span>
@@ -60,7 +51,7 @@
 <div class="required form-group {{ $errors->has('medical_allowance') ? 'has-error' : ''}}">
     {!! Form::label('medical_allowance', 'Medical Allowance', ['class' => 'col-sm-3 control-label']) !!}
     <div class="col-sm-9">
-        {!! Form::text('medical_allowance', null, ['class' => 'form-control', 'placeholder' => 'Enter Medical Allowance', 'autocomplete' => 'off', 'required']) !!}
+        {!! Form::text('medical_allowance', null, ['onkeypress' => 'validate(event)', 'medical_allowance', 'class' => 'form-control', 'placeholder' => 'Enter Medical Allowance', 'autocomplete' => 'off', 'required']) !!}
         <span class="text-danger">
             {{ $errors->first('medical_allowance') }}
         </span>
@@ -69,16 +60,25 @@
 <div class="required form-group {{ $errors->has('conveyance_allowance') ? 'has-error' : ''}}">
     {!! Form::label('conveyance_allowance', 'Convention Allowance', ['class' => 'col-sm-3 control-label']) !!}
     <div class="col-sm-9">
-        {!! Form::text('conveyance_allowance', null, ['class' => 'form-control', 'placeholder' => 'Enter Convention Allowance', 'autocomplete' => 'off', 'required']) !!}
+        {!! Form::text('conveyance_allowance', null, ['onkeypress' => 'validate(event)', 'conveyance_allowance', 'class' => 'form-control', 'placeholder' => 'Enter Convention Allowance', 'autocomplete' => 'off', 'required']) !!}
         <span class="text-danger">
             {{ $errors->first('conveyance_allowance') }}
+        </span>
+    </div>
+</div>
+<div class="required form-group {{ $errors->has('home_allowance') ? 'has-error' : ''}}">
+    {!! Form::label('home_allowance', 'Home Allowance', ['class' => 'col-sm-3 control-label']) !!}
+    <div class="col-sm-9">
+        {!! Form::text('home_allowance', null, ['onkeypress' => 'validate(event)', 'home_allowance', 'class' => 'form-control', 'placeholder' => 'Enter Home Allowance', 'autocomplete' => 'off', 'required', 'readOnly', 'tabindex' => '-1']) !!}
+        <span class="text-danger">
+            {{ $errors->first('home_allowance') }}
         </span>
     </div>
 </div>
 <div class="form-group {{ $errors->has('salary_increment') ? 'has-error' : ''}}">
     {!! Form::label('salary_increment', 'Salary Increment', ['class' => 'col-sm-3 control-label']) !!}
     <div class="col-sm-9">
-        {!! Form::text('salary_increment', null, ['class' => 'form-control', 'placeholder' => 'Enter Increase Salary', 'autocomplete' => 'off']) !!}
+        {!! Form::text('salary_increment', null, ['onkeypress' => 'validate(event)', 'class' => 'form-control', 'placeholder' => 'Enter Increase Salary', 'autocomplete' => 'off']) !!}
         <span class="text-danger">
             {{ $errors->first('salary_increment') }}
         </span>
@@ -124,6 +124,8 @@
 @section('script')
     <script src="{{ asset('js/image-show.js') }}"></script>
     <script src="{{ asset('js/datepicker-show.js') }}"></script>
+    <script src="{{ asset('js/employee.js') }}"></script>
+    <script src="{{ asset('js/text-to-number.js') }}"></script>
 @endsection
 
 

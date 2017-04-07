@@ -7,7 +7,7 @@
     {!! Form::label('employee_id', 'Employee ID', ['class' => 'col-sm-3 control-label']) !!}
     <div class="col-sm-9">
         <div class="required input-group">
-            {!! Form::text('employee_id',null, ['id' => 'employee-id', 'class' =>'form-control', 'autocomplete' => 'off', 'placeholder' => 'Enter Employee ID', 'required' => 'required' ]) !!}
+            {!! Form::text('employee_id',null, ['id' => 'employee-id', 'class' =>'form-control', 'autocomplete' => 'off', 'placeholder' => 'Enter Employee ID', 'required' => 'required', 'autofocus']) !!}
             <span class="input-group-btn">
                 <button type="button" id="employee-id-search" data-url="{{url('/salary/employee-name-show')}}" class="btn btn-success"><i class="fa fa-search"></i> Search</button>
             </span>

@@ -7,15 +7,15 @@
             <div class="panel panel-default">
                 <div class="panel-heading">Dashboard</div>
 
-                @can('super_admin-access')
+                @can('super_admin_access')
                 <h2>Super Admin</h2>
                 @endcan
 
-                @can('admin-access')
+                @can('admin_access')
                 <h2>Admin</h2>
                 @endcan
 
-                @can('normal_user-access')
+                @can('normal_user_access')
                 <h2>Normal User</h2>
                 @endcan
 
