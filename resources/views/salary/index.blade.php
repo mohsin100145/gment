@@ -23,7 +23,7 @@
         @foreach($salaries as $salary)
             <tr>
                 <td>{{ $salary->id }}</td>
-                <td>{{ $salary->employee_id }}</td>
+                <td>{{ $salary->employee->name }}</td>
                 <td>{!! Html::link("salary/$salary->id/edit",' Edit', ['class' => 'fa fa-edit btn btn-success']) !!}</td>
             </tr>
         @endforeach
