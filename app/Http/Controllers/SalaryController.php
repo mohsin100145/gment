@@ -34,27 +34,35 @@ class SalaryController extends Controller
         $authId = Auth::id();
         $employee = Employee::find($request->employee_id);
         if (!count($employee)) {
-            flash()->error(' Successfully Created');
+            flash()->error('There is no Employee in this ID');
             return redirect()->back();
-        } else {
-            Salary::create([
-                                 'employee_id' => $request->employee_id,
-                                 'year_id' => $request->year_id,
-                                 'month_id' => $request->month_id,
-                                 'days_of_month' => $request->days_of_month,
-                                 'days_of_attendance' => $request->days_of_attendance,
-                                 'salary_earn' => ($employee->salary / $request->days_of_month) * $request->days_of_attendance,
-                                 'hours_of_overtime' => $request->hours_of_overtime,
-                                 'overtime_earn' => $request->hours_of_overtime * (($employee->basic_salary / 208) * 2),
-                                 'gross_salary' => (($employee->salary / $request->days_of_month) * $request->days_of_attendance) + ($request->hours_of_overtime * ($employee->basic_salary / 208) * 2),
-                                 'created_by' => $authId,
-                                 'updated_by' => $authId
-                             ]);
-
-            flash()->message('Salary of '.$employee->name.' is Successfully Created');
-
-            return redirect('salary');
         }
+        $existSalary = Salary::where('employee_id', $request->employee_id)
+                                ->where('year_id', $request->year_id)
+                                ->where('month_id', $request->month_id)
+                                ->get();
+        if( count($existSalary) ) {
+            flash()->error("This Employee's Salary already created in this Month and Year.");
+            return redirect()->back();
+        }
+        Salary::create([
+                             'employee_id' => $request->employee_id,
+                             'year_id' => $request->year_id,
+                             'month_id' => $request->month_id,
+                             'days_of_month' => $request->days_of_month,
+                             'days_of_attendance' => $request->days_of_attendance,
+                             'salary_earn' => round(($employee->salary / $request->days_of_month) * $request->days_of_attendance),
+                             'hours_of_overtime' => $request->hours_of_overtime,
+                             'overtime_earn' => round($request->hours_of_overtime * (($employee->basic_salary / 208) * 2)),
+                             'gross_salary' => round((($employee->salary / $request->days_of_month) * $request->days_of_attendance) + ($request->hours_of_overtime * ($employee->basic_salary / 208) * 2)),
+                             'created_by' => $authId,
+                             'updated_by' => $authId
+                         ]);
+
+        flash()->message('Salary of '.$employee->name.' is Successfully Created');
+
+        return redirect('salary');
+
     }
 
     public function edit($id)
@@ -72,27 +80,37 @@ class SalaryController extends Controller
         $authId = Auth::id();
         $employee = Employee::find($request->employee_id);
         if (!count($employee)) {
-            flash()->error(' Successfully Created');
+            flash()->error('There is no Employee in this ID');
             return redirect()->back();
-        } else {
-            $salary->update([
-                               'employee_id' => $request->employee_id,
-                               'year_id' => $request->year_id,
-                               'month_id' => $request->month_id,
-                               'days_of_month' => $request->days_of_month,
-                               'days_of_attendance' => $request->days_of_attendance,
-                               'salary_earn' => ($employee->salary / $request->days_of_month) * $request->days_of_attendance,
-                               'hours_of_overtime' => $request->hours_of_overtime,
-                               'overtime_earn' => $request->hours_of_overtime * (($employee->basic_salary / 208) * 2),
-                               'gross_salary' => (($employee->salary / $request->days_of_month) * $request->days_of_attendance) + ($request->hours_of_overtime * ($employee->basic_salary / 208) * 2),
-                               'created_by' => $authId,
-                               'updated_by' => $authId
-                           ]);
-
-            flash()->message('Salary of '.$employee->name.' is Successfully Created');
-
-            return redirect('salary');
         }
+        $existSalary = Salary::where('employee_id', $request->employee_id)
+                             ->where('year_id', $request->year_id)
+                             ->where('month_id', $request->month_id)
+                             ->where('id', '<>', $salary->id)
+                             ->get();
+        if( count($existSalary) ) {
+            flash()->error("This Employee's Salary already created more then One in this Month and Year.");
+            return redirect()->back();
+        }
+
+        $salary->update([
+                           'employee_id' => $request->employee_id,
+                           'year_id' => $request->year_id,
+                           'month_id' => $request->month_id,
+                           'days_of_month' => $request->days_of_month,
+                           'days_of_attendance' => $request->days_of_attendance,
+                           'salary_earn' => round(($employee->salary / $request->days_of_month) * $request->days_of_attendance),
+                           'hours_of_overtime' => $request->hours_of_overtime,
+                           'overtime_earn' => round($request->hours_of_overtime * (($employee->basic_salary / 208) * 2)),
+                           'gross_salary' => round((($employee->salary / $request->days_of_month) * $request->days_of_attendance) + ($request->hours_of_overtime * ($employee->basic_salary / 208) * 2)),
+                           'created_by' => $authId,
+                           'updated_by' => $authId
+                       ]);
+
+        flash()->message('Salary of '.$employee->name.' is Successfully Updated');
+
+        return redirect('salary');
+
     }
 
     public function employeeInfoShow(Request $request)

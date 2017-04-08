@@ -58,7 +58,7 @@
     </div>
 </div>
 <div class="required form-group {{ $errors->has('conveyance_allowance') ? 'has-error' : ''}}">
-    {!! Form::label('conveyance_allowance', 'Convention Allowance', ['class' => 'col-sm-3 control-label']) !!}
+    {!! Form::label('conveyance_allowance', 'Conveyance Allowance', ['class' => 'col-sm-3 control-label']) !!}
     <div class="col-sm-9">
         {!! Form::text('conveyance_allowance', null, ['onkeypress' => 'validate(event)', 'conveyance_allowance', 'class' => 'form-control', 'placeholder' => 'Enter Convention Allowance', 'autocomplete' => 'off', 'required']) !!}
         <span class="text-danger">

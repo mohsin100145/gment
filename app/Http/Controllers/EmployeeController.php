@@ -81,6 +81,13 @@ class EmployeeController extends Controller
         return redirect('employee');
     }
 
+    public function show($id)
+    {
+        $employee = Employee::find($id);
+
+        return view('employee.show', compact('employee'));
+    }
+
     public function edit($id)
     {
         $employee = Employee::find($id);
