@@ -24,7 +24,11 @@ class SalaryRequest extends FormRequest
     public function rules()
     {
         return [
-            'employee_id' => 'required'
+            'employee_id' => 'required',
+            'year_id' => 'required',
+            'month_id' => 'required',
+            'days_of_month' => 'required',
+            'days_of_attendance' => 'required'
         ];
     }
 }

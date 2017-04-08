@@ -27,6 +27,7 @@ Route::get('/employee/{id}/edit', 'EmployeeController@edit');
 Route::put('/employee/{id}', 'EmployeeController@update');
 Route::delete('/employee/{id}', 'EmployeeController@destroy');
 
+Route::get('/salary/employee-info-show', 'SalaryController@employeeInfoShow');
 Route::get('/salary', 'SalaryController@index');
 Route::get('/salary/create', 'SalaryController@create');
 Route::post('/salary', 'SalaryController@store');
@@ -34,10 +35,10 @@ Route::get('/salary/{id}', 'SalaryController@show');
 Route::get('/salary/{id}/edit', 'SalaryController@edit');
 Route::put('/salary/{id}', 'SalaryController@update');
 Route::delete('/salary/{id}', 'SalaryController@destroy');
-Route::get('/salary/employee-name-show', 'SalaryController@employeeNameShow');
 
 
-Route::group(['middleware' => 'can:super_admin-access'], function () {
+
+Route::group(['middleware' => 'can:super_admin_access'], function () {
 
 //    Route::get('/employee', 'EmployeeController@index');
 //    Route::get('/employee/create', 'EmployeeController@create');
@@ -49,7 +50,7 @@ Route::group(['middleware' => 'can:super_admin-access'], function () {
 
 });
 
-Route::group(['middleware' => 'can:admin-access'], function () {
+Route::group(['middleware' => 'can:admin_access'], function () {
 
 //    Route::get('/employee', 'EmployeeController@index');
 //    Route::get('/employee/create', 'EmployeeController@create');

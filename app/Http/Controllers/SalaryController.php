@@ -94,4 +94,13 @@ class SalaryController extends Controller
             return redirect('salary');
         }
     }
+
+    public function employeeInfoShow(Request $request)
+    {
+        $employee = Employee::find($request->employee_id);
+        if(!$employee) {
+            return '<strong style="color: red; margin-left: 292px;">Entered Wrong ID of Employee.</strong>';
+        }
+        return view('salary.employee_info_show', compact('employee'));
+    }
 }

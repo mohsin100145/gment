@@ -7,9 +7,9 @@
     {!! Form::label('employee_id', 'Employee ID', ['class' => 'col-sm-3 control-label']) !!}
     <div class="col-sm-9">
         <div class="required input-group">
-            {!! Form::text('employee_id',null, ['id' => 'employee-id', 'class' =>'form-control', 'autocomplete' => 'off', 'placeholder' => 'Enter Employee ID', 'required' => 'required', 'autofocus']) !!}
+            {!! Form::text('employee_id',null, ['id' => 'employee_id', 'class' =>'form-control', 'autocomplete' => 'off', 'placeholder' => 'Enter Employee ID', 'required' => 'required', 'autofocus']) !!}
             <span class="input-group-btn">
-                <button type="button" id="employee-id-search" data-url="{{url('/salary/employee-name-show')}}" class="btn btn-success"><i class="fa fa-search"></i> Search</button>
+                <button type="button" id="employee_id_search" data-url="{{url('/salary/employee-info-show')}}" class="btn btn-success"><i class="fa fa-search"></i> Search</button>
             </span>
         </div>
         <span class="help-block text-danger">
@@ -18,7 +18,7 @@
     </div>
 </div>
 <div>
-    <span id="employee_name_show"></span>
+    <span id="employee_info_show"></span>
 </div>
 <div class="required form-group" {{ $errors->has('year_id') ? 'has-error' : '' }}>
     {!! Form::label('year_id', 'Select Year', ['class' => 'control-label col-sm-3']) !!}
@@ -80,3 +80,7 @@
     </div>
 </div>
 {!! Form::close() !!}
+
+@section('script')
+    <script src="{{ asset('js/employee-info-show.js') }}"></script>
+@endsection
