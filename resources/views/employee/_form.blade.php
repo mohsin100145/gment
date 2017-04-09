@@ -15,7 +15,7 @@
 <div class="required form-group {{ $errors->has('joining_date') ? 'has-error' : ''}}">
     {!! Form::label('joining_date', 'Joining Date', ['class' => 'col-sm-3 control-label']) !!}
     <div class="col-sm-9">
-        {!! Form::text('joining_date', null, ['class' => 'form-control', 'placeholder' => 'DD/MM/YYYY', 'autocomplete' => 'off', 'required']) !!}
+        {!! Form::text('joining_date', null, ['class' => 'form-control', 'placeholder' => 'DD/MM/YYYY', 'autocomplete' => 'off', 'required', 'readOnly']) !!}
         <span class="text-danger">
             {{ $errors->first('joining_date') }}
         </span>

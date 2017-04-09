@@ -29,6 +29,7 @@
             <th>SL</th>
             <th>Employee ID</th>
             <th>Employee Name</th>
+            <th>Salary</th>
             <th>Month</th>
             <th>Days of Month</th>
             <th>Days of Attendance</th>
@@ -37,7 +38,7 @@
             <th>Hours of Overtime</th>
             <th>Overtime Earn</th>
             <th>Gross Salary</th>
-            <th>Edit</th>
+            <th class="hidden-print">Edit</th>
         </tr>
         </thead>
         <tbody>
@@ -52,6 +53,7 @@
                 <td>{{ $salary->id }}</td>
                 <td>{{ $salary->employee->id }}</td>
                 <td>{{ $salary->employee->name }}</td>
+                <td class="text-right">{{ number_format($salary->employee->salary, 2) }}</td>
                 <td>{{ $salary->month->name }}</td>
                 <td>{{ $salary->days_of_month }}</td>
                 <td>{{ $salary->days_of_attendance }}</td>
@@ -60,7 +62,7 @@
                 <td class="text-right">{{ number_format($salary->hours_of_overtime, 2) }}</td>
                 <td class="text-right">{{ number_format($salary->overtime_earn, 2) }}</td>
                 <td class="text-right">{{ number_format($salary->gross_salary, 2) }}</td>
-                <td>{!! Html::link("salary/$salary->id/edit",' Edit', ['class' => 'fa fa-edit btn btn-success']) !!}</td>
+                <td class="hidden-print">{!! Html::link("salary/$salary->id/edit",' Edit', ['class' => 'fa fa-edit btn btn-success']) !!}</td>
             </tr>
             <?php
                 $totalSalaryEarn += $salary->salary_earn;
@@ -71,7 +73,7 @@
         @endforeach
         <tr>
             <td colspan="3" class="text-right"><b>Total</b></td>
-            <td colspan="5" class="text-right"><b>{{ number_format($totalSalaryEarn, 2) }}</b></td>
+            <td colspan="6" class="text-right"><b>{{ number_format($totalSalaryEarn, 2) }}</b></td>
             <td class="text-right"><b>{{ number_format($totalOvertime, 2) }}</b></td>
             <td class="text-right"><b>{{ number_format($totalOvertimeEarn, 2) }}</b></td>
             <td class="text-right"><b>{{ number_format($totalGrossSalary, 2) }}</b></td>
